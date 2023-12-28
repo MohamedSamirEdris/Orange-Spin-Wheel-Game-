@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react';
 const Wheel = () => {
   const [resultValue, setResultValue] = useState();
   const [wonPrizes, setWonPrizes] = useState([]);
-  console.log('🚀 ~ file: Wheel.jsx:12 ~ Wheel ~ wonPrizes:', wonPrizes);
   const [won200EGPCount, setWon200EGPCount] = useState(0);
   const [won500EGPCount, setWon500EGPCount] = useState(0);
   const [won500BestwayCount, setWon500BestwayCount] = useState(0);
@@ -20,13 +19,13 @@ const Wheel = () => {
     { label: '200 EGP ORANGE CASH', className: 'wheel-segment' }, //10 times won
     { label: 'HARD LUCK', className: 'wheel-segment-bold' },
     { label: '500 EGP ORANGE CASH', className: 'wheel-segment' }, // 4 times won
-    { label: 'HARD LUCK', className: 'wheel-segment-bold' },
+    // { label: 'HARD LUCK', className: 'wheel-segment-bold' },
     { label: '1,000 EGP ORANGE CASH', className: 'wheel-segment' }, // one time won
-    { label: 'HARD LUCK', className: 'wheel-segment-bold' },
+    // { label: 'HARD LUCK', className: 'wheel-segment-bold' },
     { label: '500 EGP BESTWAY', className: 'wheel-segment' }, // 10 times won
-    { label: 'HARD LUCK', className: 'wheel-segment-bold' },
+    // { label: 'HARD LUCK', className: 'wheel-segment-bold' },
     { label: 'FREE MEAL  BETTER BUNS', className: 'wheel-segment' }, //10 times won
-    { label: 'HARD LUCK', className: 'wheel-segment-bold' },
+    // { label: 'HARD LUCK', className: 'wheel-segment-bold' },
   ];
 
   const segColors = [
@@ -36,10 +35,10 @@ const Wheel = () => {
     '#FFFFFF',
     '#000000',
     '#FFFFFF',
-    '#000000',
-    '#FFFFFF',
-    '#000000',
-    '#FFFFFF',
+    // '#000000',
+    // '#FFFFFF',
+    // '#000000',
+    // '#FFFFFF',
   ];
 
   const onFinished = (x) => {
@@ -149,7 +148,7 @@ const Wheel = () => {
           src={next}
           alt="next"
           className="mb-10 ml-40"
-          style={{ width: '90%', maxWidth: '100px' }}
+          style={{ width: '90%', maxWidth: '150px' }}
           onClick={handleNextButton}
         />
       </div>

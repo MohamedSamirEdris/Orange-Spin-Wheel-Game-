@@ -1,10 +1,10 @@
-
-
 import { useNavigate } from 'react-router-dom';
 import information from '../assets/BG/information.svg';
 import logo from '../assets/icons/Logo.svg';
 import next from '../assets/icons/Next.svg';
-import { useState,  } from 'react';
+import exportIcon from '../assets/icons/excel.svg';
+
+import { useState } from 'react';
 import * as XLSX from 'xlsx';
 
 const Login = () => {
@@ -17,7 +17,6 @@ const Login = () => {
   });
 
   // const [allUserLoginData, setAllUserLoginData] = useState([]);
-  
 
   const handleNameChange = (e) => {
     const { value } = e.target;
@@ -55,8 +54,6 @@ const Login = () => {
   //     },
   //   ]);
 
-    
-
   //   // Navigate to the next page
   //   // navigate('/wheel');
   // };
@@ -69,8 +66,12 @@ const Login = () => {
     };
 
     // Save the user data in localStorage
-    const allUserLoginData = JSON.parse(localStorage.getItem('allUserLoginData')) || [];
-    localStorage.setItem('allUserLoginData', JSON.stringify([...allUserLoginData, userData]));
+    const allUserLoginData =
+      JSON.parse(localStorage.getItem('allUserLoginData')) || [];
+    localStorage.setItem(
+      'allUserLoginData',
+      JSON.stringify([...allUserLoginData, userData])
+    );
 
     // Navigate to the next page
     navigate('/wheel');
@@ -82,7 +83,6 @@ const Login = () => {
   //   }
   // }, [allUserLoginData, navigate]);
 
-
   // const exportToExcel = () => {
   //   const ws = XLSX.utils.json_to_sheet(allUserLoginData);
   //   const wb = XLSX.utils.book_new();
@@ -91,7 +91,8 @@ const Login = () => {
   // };
 
   const exportAllUserData = () => {
-    const allUserLoginData = JSON.parse(localStorage.getItem('allUserLoginData')) || [];
+    const allUserLoginData =
+      JSON.parse(localStorage.getItem('allUserLoginData')) || [];
 
     const ws = XLSX.utils.json_to_sheet(allUserLoginData);
     const wb = XLSX.utils.book_new();
@@ -146,7 +147,7 @@ const Login = () => {
             />
           </div>
           <div
-            style={{ borderBottom: '1px solid #ccc', marginBottom: '10px' }}
+            style={{ borderBottom: '2px solid #ccc', marginBottom: '10px' }}
           ></div>
           <div className="flex flex-row">
             <label
@@ -161,7 +162,7 @@ const Login = () => {
             />
           </div>
           <div
-            style={{ borderBottom: '1px solid #ccc', marginBottom: '10px' }}
+            style={{ borderBottom: '2px solid #ccc', marginBottom: '10px' }}
           ></div>
 
           <div className="flex flex-row">
@@ -183,21 +184,35 @@ const Login = () => {
         <img
           src={logo}
           alt="logo"
-          style={{ width: '100%', maxWidth: '100px', marginRight: '100px' }}
+          style={{
+            width: '90%',
+            maxWidth: '150px',
+            marginBottom: '150px',
+          }}
         />
         <img
           src={next}
           alt="next"
           className="mb-5 ml-40"
-          style={{ width: '100%', maxWidth: '100px', marginRight: '100px' }}
+          style={{
+            width: '90%',
+            maxWidth: '150px',
+            marginBottom: '150px',
+          }}
           onClick={handleNextButton}
         />
+        <img
+          src={exportIcon}
+          alt="export"
+          className="mb-5 ml-40"
+          style={{
+            width: '90%',
+            maxWidth: '150px',
+            marginBottom: '150px',
+          }}
+          onClick={exportAllUserData}
+        />
       </div>
-
-      {/* Export button */}
-      <button style={{ color: 'black' }} onClick={exportAllUserData}>
-        Export to Excel
-      </button>
     </div>
   );
 };

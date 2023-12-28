@@ -47,13 +47,13 @@ const Result = () => {
           src={logo}
           alt="logo"
           className="mb-10"
-          style={{ width: '90%', maxWidth: '100px' }}
+          style={{ width: '90%', maxWidth: '150px' }}
         />
         <img
           src={refresh}
           alt="next"
           className="mb-10 ml-40"
-          style={{ width: '90%', maxWidth: '100px' }}
+          style={{ width: '90%', maxWidth: '150px' }}
           onClick={handleRefreshButton}
         />
       </div>

@@ -1,8 +1,27 @@
-# React + Vite
+# Orange Wheel of Prizes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
 
-Currently, two official plugins are available:
+Orange Wheel of Prizes is a fun and interactive spinning wheel game built with React, utilizing the `react-wheel-of-prizes` library. Users can spin the wheel and win various prizes based on the segment the wheel stops on. The project includes features such as tracking won prizes, limiting the number of wins for specific prizes, and resetting data on a new day.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+To install and run the project locally, follow these steps:
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/react-wheel-of-prizes.git
+
+# Navigate to the project directory
+cd Orange-Spin-Wheel-Game
+
+# Install dependencies
+npm install

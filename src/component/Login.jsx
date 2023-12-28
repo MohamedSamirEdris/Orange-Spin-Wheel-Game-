@@ -145,7 +145,9 @@ const Login = () => {
               style={{ width: '70%', fontSize: '30px' }}
             />
           </div>
-
+          <div
+            style={{ borderBottom: '1px solid #ccc', marginBottom: '10px' }}
+          ></div>
           <div className="flex flex-row">
             <label
               style={{ width: '40%', fontSize: '30px', fontWeight: 'bold' }}
@@ -193,7 +195,7 @@ const Login = () => {
       </div>
 
       {/* Export button */}
-      <button style={{ color: 'red' }} onClick={exportAllUserData}>
+      <button style={{ color: 'black' }} onClick={exportAllUserData}>
         Export to Excel
       </button>
     </div>

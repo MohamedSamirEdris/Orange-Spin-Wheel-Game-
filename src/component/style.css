@@ -1,0 +1,61 @@
+#spin {
+  background-image: url('../assets/BG/BGWheel.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: 'relative';
+}
+
+.wheel-frame {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 1rem;
+}
+
+#wheel-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+.wheel-container {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#result {
+  background-image: url('../assets/BG/BGResults.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#login {
+  background-image: url('../assets/BG/BGLogin.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  #wheel-container {
+    max-width: 40%;
+  }
+}

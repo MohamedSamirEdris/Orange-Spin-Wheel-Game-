@@ -25,3 +25,9 @@ cd Orange-Spin-Wheel-Game
 
 # Install dependencies
 npm install
+
+
+
+## Sample Video Link
+ https://drive.google.com/file/d/1iAfCsQ-fRMnvMdLEVwEO4-oM6VFmCnuG/view?usp=drive_link
+```

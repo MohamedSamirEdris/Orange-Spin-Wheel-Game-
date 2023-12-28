@@ -194,7 +194,7 @@ const Login = () => {
       </div>
 
       {/* Export button */}
-      <button style={{ color: 'red' }} onClick={exportAllUserData}>
+      <button style={{ color: 'black' }} onClick={exportAllUserData}>
         Export to Excel
       </button>
     </div>

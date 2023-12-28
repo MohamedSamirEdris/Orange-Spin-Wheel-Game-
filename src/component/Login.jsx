@@ -1,8 +1,10 @@
+
+
 import { useNavigate } from 'react-router-dom';
 import information from '../assets/BG/information.svg';
 import logo from '../assets/icons/Logo.svg';
 import next from '../assets/icons/Next.svg';
-import { useState } from 'react';
+import { useState,  } from 'react';
 import * as XLSX from 'xlsx';
 
 const Login = () => {
@@ -15,6 +17,7 @@ const Login = () => {
   });
 
   // const [allUserLoginData, setAllUserLoginData] = useState([]);
+  
 
   const handleNameChange = (e) => {
     const { value } = e.target;
@@ -52,6 +55,8 @@ const Login = () => {
   //     },
   //   ]);
 
+    
+
   //   // Navigate to the next page
   //   // navigate('/wheel');
   // };
@@ -64,12 +69,8 @@ const Login = () => {
     };
 
     // Save the user data in localStorage
-    const allUserLoginData =
-      JSON.parse(localStorage.getItem('allUserLoginData')) || [];
-    localStorage.setItem(
-      'allUserLoginData',
-      JSON.stringify([...allUserLoginData, userData])
-    );
+    const allUserLoginData = JSON.parse(localStorage.getItem('allUserLoginData')) || [];
+    localStorage.setItem('allUserLoginData', JSON.stringify([...allUserLoginData, userData]));
 
     // Navigate to the next page
     navigate('/wheel');
@@ -81,6 +82,7 @@ const Login = () => {
   //   }
   // }, [allUserLoginData, navigate]);
 
+
   // const exportToExcel = () => {
   //   const ws = XLSX.utils.json_to_sheet(allUserLoginData);
   //   const wb = XLSX.utils.book_new();
@@ -89,8 +91,7 @@ const Login = () => {
   // };
 
   const exportAllUserData = () => {
-    const allUserLoginData =
-      JSON.parse(localStorage.getItem('allUserLoginData')) || [];
+    const allUserLoginData = JSON.parse(localStorage.getItem('allUserLoginData')) || [];
 
     const ws = XLSX.utils.json_to_sheet(allUserLoginData);
     const wb = XLSX.utils.book_new();
@@ -144,9 +145,7 @@ const Login = () => {
               style={{ width: '70%', fontSize: '30px' }}
             />
           </div>
-          <div
-            style={{ borderBottom: '1px solid #ccc', marginBottom: '10px' }}
-          />
+
           <div className="flex flex-row">
             <label
               style={{ width: '40%', fontSize: '30px', fontWeight: 'bold' }}
@@ -161,7 +160,7 @@ const Login = () => {
           </div>
           <div
             style={{ borderBottom: '1px solid #ccc', marginBottom: '10px' }}
-          />
+          ></div>
 
           <div className="flex flex-row">
             <label
@@ -194,7 +193,7 @@ const Login = () => {
       </div>
 
       {/* Export button */}
-      <button style={{ color: 'black' }} onClick={exportAllUserData}>
+      <button style={{ color: 'red' }} onClick={exportAllUserData}>
         Export to Excel
       </button>
     </div>

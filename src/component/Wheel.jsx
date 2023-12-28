@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 const Wheel = () => {
   const [resultValue, setResultValue] = useState();
   const [wonPrizes, setWonPrizes] = useState([]);
+  console.log('🚀 ~ file: Wheel.jsx:12 ~ Wheel ~ wonPrizes:', wonPrizes);
   const [won200EGPCount, setWon200EGPCount] = useState(0);
   const [won500EGPCount, setWon500EGPCount] = useState(0);
   const [won500BestwayCount, setWon500BestwayCount] = useState(0);
@@ -95,6 +96,8 @@ const Wheel = () => {
       setWonPrizes([]);
       setWon200EGPCount(0);
       setWon500EGPCount(0);
+      setWon500BestwayCount(0);
+      setWonBetterBunsCount(0);
 
       // Update stored date
       localStorage.setItem('lastVisitedDate', currentDate);

@@ -8,34 +8,64 @@ import { useState, useEffect } from 'react';
 
 const Wheel = () => {
   const [resultValue, setResultValue] = useState();
-  const [wonPrizes, setWonPrizes] = useState([]);
-  const [won1000EGPCount, setWon1000EGPCount] = useState(0);
-  const [won200EGPCount, setWon200EGPCount] = useState(0);
-  const [won500EGPCount, setWon500EGPCount] = useState(0);
-  const [won500BestwayCount, setWon500BestwayCount] = useState(0);
-  const [wonBetterBunsCount, setWonBetterBunsCount] = useState(0);
+  const [wonPrizes, setWonPrizes] = useState(() => {
+    const storedWonPrizes = localStorage.getItem('wonPrizes');
+    return storedWonPrizes ? JSON.parse(storedWonPrizes) : [];
+  });
+  const [won1000EGPCount, setWon1000EGPCount] = useState(
+    () => Number(localStorage.getItem('won1000EGPCount')) || 0
+  );
+  const [won200EGPCount, setWon200EGPCount] = useState(
+    () => Number(localStorage.getItem('won200EGPCount')) || 0
+  );
+  const [won500EGPCount, setWon500EGPCount] = useState(
+    () => Number(localStorage.getItem('won500EGPCount')) || 0
+  );
+  const [won500BestwayCount, setWon500BestwayCount] = useState(
+    () => Number(localStorage.getItem('won500BestwayCount')) || 0
+  );
+  const [wonBetterBunsCount, setWonBetterBunsCount] = useState(
+    () => Number(localStorage.getItem('wonBetterBunsCount')) || 0
+  );
 
   const navigate = useNavigate();
   const segments = [
-    { label: '200 EGP ORANGE CASH', className: 'wheel-segment' }, //10 times won
+    ...(wonBetterBunsCount < 10
+      ? [{ label: '200 EGP ORANGE CASH', className: 'wheel-segment' }]
+      : [{ label: 'HARD LUCK', className: 'wheel-segment-bold' }]),
+    //10 times won
     { label: 'HARD LUCK', className: 'wheel-segment-bold' },
-    { label: '500 EGP ORANGE CASH', className: 'wheel-segment' }, // 4 times won
+    ...(wonBetterBunsCount < 4
+      ? [{ label: '500 EGP ORANGE CASH', className: 'wheel-segment' }]
+      : [{ label: 'HARD LUCK', className: 'wheel-segment-bold' }]),
+    // 4 times won
     // { label: 'HARD LUCK', className: 'wheel-segment-bold' },
-    { label: '1,000 EGP ORANGE CASH', className: 'wheel-segment' }, // one time won
+    ...(won1000EGPCount === 0
+      ? [{ label: '1,000 EGP ORANGE CASH', className: 'wheel-segment' }]
+      : [{ label: '200 EGP ORANGE CASH', className: 'wheel-segment' }]), // one time won
     // { label: 'HARD LUCK', className: 'wheel-segment-bold' },
-    { label: '500 EGP BESTWAY', className: 'wheel-segment' }, // 10 times won
+    ...(won500BestwayCount < 1
+      ? [{ label: '500 EGP BESTWAY', className: 'wheel-segment' }]
+      : [{ label: 'HARD LUCK', className: 'wheel-segment-bold' }]),  // 10 times won
     // { label: 'HARD LUCK', className: 'wheel-segment-bold' },
-    { label: 'FREE MEAL  BETTER BUNS', className: 'wheel-segment' }, //10 times won
+    ...(wonBetterBunsCount < 5
+      ? [{ label: 'FREE MEAL  BETTER BUNS', className: 'wheel-segment' }]
+      : [{ label: 'HARD LUCK', className: 'wheel-segment-bold' }]), //10 times won
     // { label: 'HARD LUCK', className: 'wheel-segment-bold' },
   ];
 
   const segColors = [
     '#000000',
     '#FFFFFF',
+
     '#000000',
     '#FFFFFF',
+
+    // won500BestwayCount >= 1 ? '#FFFFFF' : '#000000',
+
     '#000000',
     '#FFFFFF',
+
     // '#000000',
     // '#FFFFFF',
     // '#000000',
@@ -45,15 +75,9 @@ const Wheel = () => {
   const onFinished = (x) => {
     setResultValue(x);
 
-    // Check if the prize has already been won
     if (wonPrizes.includes(x)) {
       console.log(`You've already won ${x}!`);
-      // Handle the case where the prize has already been won
     } else {
-      // Update the list of won prizes
-      setWonPrizes((prevPrizes) => [...prevPrizes, x]);
-
-      // Use the updated state value in the callback
       if (x === 'HARD LUCK') {
         console.log('Congratulations! You won something!', x);
       } else if (x === '1,000 EGP ORANGE CASH' && won1000EGPCount === 0) {
@@ -61,24 +85,23 @@ const Wheel = () => {
         console.log('You won 1,000 EGP Orange Cash!');
         setWon1000EGPCount(1);
       } else if (x === '200 EGP ORANGE CASH' && won200EGPCount < 10) {
-        // Check if the count for 200 EGP ORANGE CASH is less than 10
         console.log('You won 200 EGP Orange Cash!');
         setWon200EGPCount((count) => count + 1);
       } else if (x === '500 EGP ORANGE CASH' && won500EGPCount < 4) {
-        // Check if the count for 500 EGP ORANGE CASH is less than 4
         console.log('You won 500 EGP Orange Cash!');
         setWon500EGPCount((count) => count + 1);
       } else if (x === '500 EGP BESTWAY' && won500BestwayCount < 5) {
-        // Check if the count for 500 EGP BESTWAY is less than 10
         console.log('You won 500 EGP Bestway!');
         setWon500BestwayCount((count) => count + 1);
-      } else if (x === '500 EGP BESTWAY' && wonBetterBunsCount < 5) {
-        // Check if the count for  BETTERBUNS is less than 10
-        console.log('You won 500 EGP Bestway!');
+      } else if (x === 'FREE MEAL  BETTER BUNS' && wonBetterBunsCount < 5) {
+        console.log('You won FREE MEAL BETTER BUNS!');
         setWonBetterBunsCount((count) => count + 1);
       } else {
         console.log('Better luck next time!');
       }
+
+      // Update the list of won prizes
+      setWonPrizes((prevPrizes) => [...prevPrizes, x]);
     }
   };
 
@@ -105,6 +128,23 @@ const Wheel = () => {
       localStorage.setItem('lastVisitedDate', currentDate);
     }
   }, []);
+
+  useEffect(() => {
+    // Save state to localStorage whenever relevant state variables change
+    localStorage.setItem('wonPrizes', JSON.stringify(wonPrizes));
+    localStorage.setItem('won1000EGPCount', won1000EGPCount.toString());
+    localStorage.setItem('won200EGPCount', won200EGPCount.toString());
+    localStorage.setItem('won500EGPCount', won500EGPCount.toString());
+    localStorage.setItem('won500BestwayCount', won500BestwayCount.toString());
+    localStorage.setItem('wonBetterBunsCount', wonBetterBunsCount.toString());
+  }, [
+    wonPrizes,
+    won1000EGPCount,
+    won200EGPCount,
+    won500EGPCount,
+    won500BestwayCount,
+    wonBetterBunsCount,
+  ]);
 
   return (
     <div id="spin">
@@ -136,8 +176,8 @@ const Wheel = () => {
           contrastColor="#FF7900"
           buttonText="Spin"
           isOnlyOnce={false}
-          upDuration={100}
-          downDuration={1000}
+          upDuration={10}
+          downDuration={100}
         />
       </div>
       <div className="flex flex-row justify-between">

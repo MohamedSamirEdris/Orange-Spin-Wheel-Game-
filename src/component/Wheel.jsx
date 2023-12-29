@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 const Wheel = () => {
   const [resultValue, setResultValue] = useState();
   const [wonPrizes, setWonPrizes] = useState([]);
+  const [won1000EGPCount, setWon1000EGPCount] = useState(0);
   const [won200EGPCount, setWon200EGPCount] = useState(0);
   const [won500EGPCount, setWon500EGPCount] = useState(0);
   const [won500BestwayCount, setWon500BestwayCount] = useState(0);
@@ -55,8 +56,10 @@ const Wheel = () => {
       // Use the updated state value in the callback
       if (x === 'HARD LUCK') {
         console.log('Congratulations! You won something!', x);
-      } else if (x === '1,000 EGP ORANGE CASH') {
+      } else if (x === '1,000 EGP ORANGE CASH' && won1000EGPCount === 0) {
+        // Check if the count for 1,000 EGP ORANGE CASH is 0 (not won before)
         console.log('You won 1,000 EGP Orange Cash!');
+        setWon1000EGPCount(1);
       } else if (x === '200 EGP ORANGE CASH' && won200EGPCount < 10) {
         // Check if the count for 200 EGP ORANGE CASH is less than 10
         console.log('You won 200 EGP Orange Cash!');
